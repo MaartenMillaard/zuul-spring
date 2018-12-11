@@ -3,6 +3,9 @@ package nl.maarten.zuul;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,7 +22,7 @@ import java.util.Scanner;
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
-
+@SpringBootApplication
 public class Game 
 {
     private Parser parser;
@@ -32,18 +35,19 @@ public class Game
      * Create the game and initialise its internal map.
      */
     public static void main(String[] args) {
-    	System.out.print("Hello, what's your name? ");
-    	Scanner scanner = new Scanner(System.in);
-    	player = new Player(scanner.nextLine());
-    	
-        new Game().play();
+		SpringApplication.run(Game.class, args);
+//    	System.out.print("Hello, what's your name? ");
+//    	Scanner scanner = new Scanner(System.in);
+//    	player = new Player(scanner.nextLine());
+//    	
+//        new Game().play();
     }
 
     public Game() 
     {
-    	createItems();
-        createRooms();
-        parser = new Parser();
+//    	createItems();
+//        createRooms();
+//        parser = new Parser();
     }
 
     private void createItems() {
@@ -121,11 +125,11 @@ public class Game
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
 
-        boolean finished = false;
-        while (! finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
+//        boolean finished = false;
+//        while (! finished) {
+//            Command command = parser.getCommand();
+//            finished = processCommand(command);
+//        }
         System.out.println("Thank you for playing.  Good bye.");
     }
 

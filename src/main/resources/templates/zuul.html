@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Zuul-Spring results</title>
+</head>
+<body>
+<p th:text="'You typed ' + ${word1} + ' ' + ${word2}">
+<p>
+	<form action="/zuul" method="POST">
+		<table>
+			<tr>
+				<td>Type your command:</td>
+				<td><input type="text" name="command"></td>
+			</tr>
+			<tr>
+				<td>Click to send</td>
+				<td><input type="submit" value="GO"></td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

@@ -1,6 +1,11 @@
 package nl.maarten.zuul;
 import java.util.Scanner;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -17,6 +22,8 @@ import java.util.Scanner;
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
+
+@Controller
 public class Parser 
 {
     private CommandWords commands;  // holds all valid command words
@@ -34,7 +41,8 @@ public class Parser
     /**
      * @return The next command from the user.
      */
-    public Command getCommand() 
+    @PostMapping("/zuul")
+    public Command getCommand(@RequestParam(name = "command") String command, Model model) 
     {
         String inputLine;   // will hold the full input line
         String word1 = null;
@@ -42,7 +50,7 @@ public class Parser
 
         System.out.print("> ");     // print prompt
 
-        inputLine = reader.nextLine();
+        inputLine = command;
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
@@ -55,6 +63,8 @@ public class Parser
         }
         tokenizer.close();
 
+        model.addAttribute("word1", word1);
+        model.addAttribute("word2", word2);
         return new Command(commands.getCommandWord(word1), word2);
     }
 
